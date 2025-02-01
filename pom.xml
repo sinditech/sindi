@@ -1,0 +1,301 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>za.co.sindi</groupId>
+	<artifactId>sindi</artifactId>
+	<version>1</version>
+	<packaging>pom</packaging>
+
+	<inceptionYear>2024</inceptionYear>
+
+	<name>Sindi Technologies (Pty) Ltd</name>
+	<description>
+		Sindi Technologies is an enterprise software development company that specialises in developing enterprise solutions and services for its enterprise customers.
+		It's company is based in South Africa.
+	</description>
+	<url>https://www.sindi.co.za/</url>
+	<developers>
+		<developer>
+			<name>Buhake Sindi</name>
+			<timezone>+2</timezone>
+			<roles>
+				<role>PROJECT LEAD</role>
+			</roles>
+			<email>buhake.sindi@sindi.co.za</email>
+		</developer>
+	</developers>
+	<organization>
+		<name>Sindi Technologies (Pty) Ltd</name>
+		<url>https://www.sindi.co.za/</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>${distMgmtSnapshotsId}</id>
+			<name>${distMgmtSnapshotsName}</name>
+			<url>${distMgmtSnapshotsUrl}</url>
+		</snapshotRepository>
+		<repository>
+			<id>${distMgmtReleasesId}</id>
+			<name>${distMgmtReleasesName}</name>
+			<url>${distMgmtReleasesUrl}</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<distMgmtReleasesId>sindi.releases.https</distMgmtReleasesId>
+		<distMgmtReleasesName>Central Repository OSSRH (Release Deployment)</distMgmtReleasesName>
+		<distMgmtReleasesUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2/</distMgmtReleasesUrl>
+		<distMgmtSnapshotsId>sindi.snapshots.https</distMgmtSnapshotsId>
+		<distMgmtSnapshotsName>Central Repository OSSRH (Snapshot Deployment)</distMgmtSnapshotsName>
+		<distMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots</distMgmtSnapshotsUrl>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<minimalMavenBuildVersion>3.9.9</minimalMavenBuildVersion>
+		<minimalMavenBuildMessage>The check for your Maven version &gt;=${minimalMavenBuildVersion} has failed. Please update your Maven install.</minimalMavenBuildMessage>
+		<minimalJavaBuildVersion>11</minimalJavaBuildVersion>
+		<minimalJavaBuildMessage>The check for your JDK version	&gt;=${minimalJavaBuildVersion} has failed. Please update your JDK install.</minimalJavaBuildMessage>
+		<surefire.version>3.5.2</surefire.version><!-- for surefire, failsafe and surefire-report -->
+
+		<version.maven-clean-plugin>3.4.0</version.maven-clean-plugin>
+		<version.maven-compiler-plugin>3.13.0</version.maven-compiler-plugin>
+		<version.maven-enforcer-plugin>${surefire.version}</version.maven-enforcer-plugin>
+		<version.maven-gpg-plugin>3.2.7</version.maven-gpg-plugin>
+		<version.maven-javadoc-plugin>3.11.2</version.maven-javadoc-plugin>
+		<version.maven-jar-plugin>3.4.2</version.maven-jar-plugin>
+		<version.maven-source-plugin>3.3.1</version.maven-source-plugin>
+		<version.maven-surefire-plugin>${surefire.version}</version.maven-surefire-plugin>
+		<version.nexus-staging-maven-plugin>1.7.0</version.nexus-staging-maven-plugin>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${version.maven-clean-plugin}</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.maven-compiler-plugin}</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${version.maven-enforcer-plugin}</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${version.maven-gpg-plugin}</version>
+					<configuration>
+						<gpgArguments>
+							<arg>--pinentry-mode</arg>
+							<arg>loopback</arg>
+						</gpgArguments>
+					</configuration>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${version.maven-javadoc-plugin}</version>
+					<configuration>
+			            <!-- Support for @apiNote, @implSpec, @implNote -->
+			            <tags>
+			              <tag>
+			                <name>apiNote</name>
+			                <placement>a</placement>
+			                <head>API Note:</head>
+			              </tag>
+			              <tag>
+			                <name>implSpec</name>
+			                <placement>a</placement>
+			                <head>Implementation Requirements:</head>
+			              </tag>
+			              <tag>
+			                <name>implNote</name>
+			                <placement>a</placement>
+			                <head>Implementation Note:</head>
+			              </tag>
+			              <tag>
+			                <name>param</name>
+			              </tag>
+			              <tag>
+			                <name>return</name>
+			              </tag>
+			              <tag>
+			                <name>throws</name>
+			              </tag>
+			              <tag>
+			                <name>since</name>
+			              </tag>
+			              <tag>
+			                <name>version</name>
+			              </tag>
+			              <tag>
+			                <name>serialData</name>
+			              </tag>
+			              <tag>
+			                <name>see</name>
+			              </tag>
+			            </tags>
+			    	</configuration>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${version.maven-jar-plugin}</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${version.maven-source-plugin}</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${version.maven-surefire-plugin}</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.sonatype.plugins/nexus-staging-maven-plugin -->
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>${version.nexus-staging-maven-plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-maven-version</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[${minimalMavenBuildVersion},)</version>
+									<message>${minimalMavenBuildMessage}</message>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+					<execution>
+						<id>enforce-java-version</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireJavaVersion>
+									<version>[${minimalJavaBuildVersion},)</version>
+									<message>${minimalJavaBuildMessage}</message>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>sindi-release</id>
+			<build>
+				<plugins>
+					<!-- GPG Signed Components -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<passphrase>${env.GPG_PASSPHRASE}</passphrase>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<!--
+							<links>
+		        				<link>https://docs.oracle.com/en/java/javase/17/docs/api/</link>
+		      				</links>
+		      				-->
+							<additionalOptions>
+								<additionalOption>-Xdoclint:none</additionalOption>
+							</additionalOptions>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
