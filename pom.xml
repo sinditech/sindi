@@ -45,9 +45,9 @@
   	</scm>
 	
 	<distributionManagement>
-		<repository>
-			<name>${distMgmtSnapshotsName}</name>
+		<snapshotRepository>
 			<id>${distMgmtSnapshotsId}</id>
+			<name>${distMgmtSnapshotsName}</name>
 			<url>${distMgmtSnapshotsUrl}</url>
 			<releases>
 				<enabled>false</enabled>
@@ -55,7 +55,7 @@
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</repository>
+		</snapshotRepository>
 	</distributionManagement>
 	
 	<properties>
