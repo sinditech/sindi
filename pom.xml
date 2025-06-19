@@ -44,19 +44,6 @@
     	<tag>HEAD</tag>
   	</scm>
 	
-	<distributionManagement>
-		<snapshotRepository>
-			<id>${distMgmtSnapshotsId}</id>
-			<name>${distMgmtSnapshotsName}</name>
-			<url>${distMgmtSnapshotsUrl}</url>
-		</snapshotRepository>
-		<repository>
-			<id>${distMgmtReleasesId}</id>
-			<name>${distMgmtReleasesName}</name>
-			<url>${distMgmtReleasesUrl}</url>
-		</repository>
-	</distributionManagement>
-	
 	<repositories>
 		<repository>
 			<name>${distMgmtSnapshotsName}</name>
