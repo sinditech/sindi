@@ -33,11 +33,11 @@ jobs:
 
       - name: Install GPG secret key
         run: |
-          cat <(echo -e "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}") | gpg --batch --import
+          echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG
         env:
           MAVEN_GPG_PRIVATE_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-        
+
       - name: Deploy to Maven Central
         run: mvn --batch-mode deploy -P sindi-release -DskipTests -DskipITs -Dspotless.check.skip=true -e -Dgpg.passphrase=${{ secrets.MAVEN_GPG_PASSPHRASE }} # -P release if you use a profile for release builds
         env:
