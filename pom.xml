@@ -44,38 +44,7 @@
     	<tag>HEAD</tag>
   	</scm>
 	
-	<distributionManagement>
-		<snapshotRepository>
-			<id>${distMgmtSnapshotsId}</id>
-			<name>${distMgmtSnapshotsName}</name>
-			<url>${distMgmtSnapshotsUrl}</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</snapshotRepository>
-		<repository>
-			<id>${distMgmtReleasesId}</id>
-			<name>${distMgmtReleasesName}</name>
-			<url>${distMgmtReleasesUrl}</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</distributionManagement>
-	
 	<properties>
-		<distMgmtReleasesId>central-portal-releases</distMgmtReleasesId>
-		<distMgmtReleasesName>Central Portal Releases</distMgmtReleasesName>
-		<distMgmtReleasesUrl>https://central.sonatype.com/service/local/staging/deploy/maven2/</distMgmtReleasesUrl>
-		<distMgmtSnapshotsId>central-portal-snapshots</distMgmtSnapshotsId>
-		<distMgmtSnapshotsName>Central Portal Snapshots</distMgmtSnapshotsName>
-		<distMgmtSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</distMgmtSnapshotsUrl>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
