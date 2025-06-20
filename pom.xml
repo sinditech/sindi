@@ -63,6 +63,7 @@
 		<version.maven-jar-plugin>3.4.2</version.maven-jar-plugin>
 		<version.maven-source-plugin>3.3.1</version.maven-source-plugin>
 		<version.maven-surefire-plugin>${surefire.version}</version.maven-surefire-plugin>
+		<version.maven-release-plugin>3.1.1</version.maven-release-plugin>
 		<version.central-publishing-maven-plugin>0.8.0</version.central-publishing-maven-plugin>
 	</properties>
 
@@ -180,6 +181,13 @@
 					<version>${version.maven-surefire-plugin}</version>
 				</plugin>
 				
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-release-plugin -->
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-release-plugin</artifactId>
+				    <version>${version.maven-release-plugin}</version>
+				</plugin>
+				
 				<plugin>
 					<groupId>org.sonatype.central</groupId>
 					<artifactId>central-publishing-maven-plugin</artifactId>
@@ -247,46 +255,22 @@
 								<goals>
 									<goal>sign</goal>
 								</goals>
-								<configuration>
-									<passphrase>${env.GPG_PASSPHRASE}</passphrase>
-								</configuration>
+		            		<configuration>
+			              		<gpgArguments>
+			                		<arg>--pinentry-mode</arg>
+			                		<arg>loopback</arg>
+			              		</gpgArguments>
+		            		</configuration>
 							</execution>
 						</executions>
 					</plugin>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<!--
-							<links>
-		        				<link>https://docs.oracle.com/en/java/javase/17/docs/api/</link>
-		      				</links>
-		      				-->
-							<additionalOptions>
-								<additionalOption>-Xdoclint:none</additionalOption>
-							</additionalOptions>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
+				    	<groupId>org.apache.maven.plugins</groupId>
+				    	<artifactId>maven-release-plugin</artifactId>
+				    	<configuration>
+                    		<goals>deploy</goals>
+                		</configuration>
+				    </plugin>
 				</plugins>
 			</build>
 		</profile>
